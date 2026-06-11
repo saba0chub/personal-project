@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col"><h1 class="title text-center" style="color:white">JSparrowGmaes</h1></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col"><img src="../static/images/logo.jpg" alt="" width="80px" class="d-block mx-auto" style="border-radius:100px"></div>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 15vh;">
+    <div class="row">
+        <div class="col title text-center">
+
+            <div class="row">
+                {% for game in games %}
+                <div class="col-md-3 mb-3 d-flex">
+                    <div class="card h-100 w-100" style="background-color: #2c3e50; color: white;">
+                        <img src="/static/images/{{ game.image }}"
+                             class="card-img-top"
+                             alt="Game Poster Image">
+
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">{{ game.title }}</h5>
+                            <p class="card-text">{{ game.release_year }}</p>
+
+                            <div class="mt-auto">
+                                <a href="/game/{{ game.id }}" class="btn btn-primary">See details</a>
+
+                                {% if current_user.role == "Admin" %}
+                                    <a href="/delete_game/{{ game.id }}" class="btn btn-danger">Delete game</a>
+                                    <a href="/update_game/{{ game.id }}" class="btn btn-info mt-2">Update game</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
