@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="../static/style3.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col"><h1 class="title text-center" style="color:white">Login Page</h1></div>
+    </div>
+</div>
+
+
+    <div class="row justify-content-center">
+            {% for errors in form.errors.values() %}
+                <div class="alert alert-danger">
+                    {% for error in errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        <form method="POST" enctype="multipart/form-data" class="col-6 p-5">
+            {{ form.hidden_tag() }}
+            <div class="row mt-2">
+                {{ form.username(class="form-control", placeholder=form.username.label.text) }}
+            </div>
+            <div class="row mt-2">
+                {{ form.password(class="form-control", placeholder=form.password.label.text) }}
+            </div>
+
+            <div class="row mt-2">
+                {{ form.login(class="btn btn-success", placeholder=form.login.label.text) }}
+
+
+                <div class="container">
+    <div class="row">
+        <img src="{{ url_for('static', filename='images/thedeep.png') }}"
+             alt="The Deep"
+             class="d-block mx-auto"
+             style="width: 350px; height: auto;">
+    </div>
+</div>
+
+
+
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+
